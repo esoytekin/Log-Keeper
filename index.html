@@ -1,0 +1,141 @@
+<html>
+    <head>
+        <title>Log Keeper</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        <style type="text/css" media="screen">
+        body {
+            padding-top: 70px;
+        }
+        .sidebar-nav{  z-index: 99999;position:fixed; width:20%; top:60px; right: 0; background: white; display:none;}
+        </style>
+
+    </head>
+    <body>
+      <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container" >
+        <div class ="row">
+        <div class="navbar-header col-sm-1" >
+          <a class="navbar-brand" href="#" data-bind="text: title"></a>
+        </div>
+        <div class="navbar-header col-sm-8" >
+          <div class="navbar-brand " style="padding: 8px 0px;">
+          <div class="row">
+          <div class="col-lg-10">
+          <div class="input-group " style="">
+
+          <input type="text" class="form-control" placeholder="Search for...">
+          <span class="input-group-btn">
+          <button class="btn btn-default" type="button">Go!</button>
+          </span>
+
+          </div> <!-- input group  -->
+          </div>
+          <div class="col-lg-2">
+          <div class="btn-group ">
+          <button type="button" class="btn btn-default">Upload</button>
+          </div>
+          </div>
+          </div>
+          </div>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse col-sm-3" >
+          <ul class="nav navbar-nav navbar-right">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+        </div><!-- /nav row-->
+      </div>
+    </nav>
+
+    <div class="container">
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="jumbotron ">
+      <nav style="text-align:center;">
+          <ul class="pagination" >
+            <li data-bind="css: hasPrevious() ? '' : 'disabled', click: previous">
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="pagination" data-bind="foreach: new Array(totalPages())">
+            <li  data-bind="css: $root.pageNumber()==$index() ? 'active' : ''"><a href="#" data-bind="text: $index()+1, click: $root.gotoPage" ></a></li>
+          </ul> 
+          <ul class="pagination">
+            <li data-bind="css: hasNext() ? '' : 'disabled', click: next">
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+      </nav>
+      <div class="list-group" data-bind="foreach: paginated">
+          <a href="#" class=" list-group-item" data-bind="click: $root.fileClicked, css: $root.selectedFile() && name==$root.selectedFile().name ? 'active' : ''" >
+          <div class="input-group">
+          <span data-bind="text:name"></span>
+          <span class="input-group-btn">
+                <button class="btn btn-default glyphicon glyphicon-download" href="#"></button>
+                <button class="btn btn-default glyphicon glyphicon-minus" href="#"></button>
+          </span>
+          
+          </div>
+          
+          </a>
+      </div>
+      <nav style="text-align:center;">
+          <ul class="pagination" >
+            <li data-bind="css: hasPrevious() ? '' : 'disabled', click: previous">
+              <a href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+              </a>
+            </li>
+          </ul>
+          <ul class="pagination" data-bind="foreach: new Array(totalPages())">
+            <li  data-bind="css: $root.pageNumber()==$index() ? 'active' : ''"><a href="#" data-bind="text: $index()+1, click: $root.gotoPage" ></a></li>
+          </ul> 
+          <ul class="pagination">
+            <li data-bind="css: hasNext() ? '' : 'disabled', click: next">
+              <a href="#" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+              </a>
+            </li>
+          </ul>
+      </nav>
+      </div> <!-- jumbotron -->
+      <div class="well sidebar-nav" data-bind="fadeVisible: $root.selectedFile()">
+        <ul class="nav nav-list">
+          <li class="nav-header">Sidebar</li>
+          <li class="active"><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+          <li><a href="#">Link</a></li>
+        </ul>
+      </div><!--/.well -->
+
+
+    </div> <!-- /container -->
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="resources/js/knockout-3.4.0.js" type="text/javascript" charset="utf-8"></script>
+    <script src="resources/js/master.js" type="text/javascript" charset="utf-8"></script>
+
+    </body>
+</html>
