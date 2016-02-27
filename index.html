@@ -6,13 +6,41 @@
 
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        <link rel="stylesheet" href="resources/css/bootstrap-tagsinput.css" type="text/css" media="screen" charset="utf-8">
         <style type="text/css" media="screen">
         body {
             padding-top: 70px;
         }
         .sidebar-nav{  z-index: 99999;position:fixed; width:40%; top:60px; right: 0; background: white; display:none;}
+        .bootstrap-tagsinput {
+            width: 100%;
+            border-radius: 0px;
+        }
         </style>
 
+<script>
+var citynames = new Bloodhound({
+  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
+  queryTokenizer: Bloodhound.tokenizers.whitespace,
+  prefetch: {
+    url: 'assets/citynames.json',
+    filter: function(list) {
+      return $.map(list, function(cityname) {
+        return { name: cityname }; });
+    }
+  }
+});
+citynames.initialize();
+
+$('input').tagsinput({
+  typeaheadjs: {
+    name: 'citynames',
+    displayKey: 'name',
+    valueKey: 'name',
+    source: citynames.ttAdapter()
+  }
+});
+</script>
     </head>
     <body>
       <!-- Fixed navbar -->
@@ -30,7 +58,8 @@
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-search"></span>
                   </span>
-                  <input class="form-control" placeholder="Search for a tag ..." type="text">
+                  <input class="form-control"  placeholder="Search for a tag ..." type="text" data-role="tagsinput">
+
               </div>    
           </div>
           <div class="col-lg-2">
@@ -151,6 +180,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="resources/js/bootstrap3-typeahead.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="resources/js/bootstrap-tagsinput.js" type="text/javascript" charset="utf-8"></script>
     <script src="resources/js/knockout-3.4.0.js" type="text/javascript" charset="utf-8"></script>
     <script src="resources/js/master.js" type="text/javascript" charset="utf-8"></script>
 

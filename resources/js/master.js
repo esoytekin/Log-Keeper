@@ -2,6 +2,10 @@
  * master js file
  *
  */
+
+//https://github.com/bassjobsen/Bootstrap-3-Typeahead
+//http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/
+
 ko.bindingHandlers.fadeVisible = {
 		
 		init: function(element, valueAccessor){},
