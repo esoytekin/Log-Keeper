@@ -10,7 +10,7 @@
         body {
             padding-top: 70px;
         }
-        .sidebar-nav{  z-index: 99999;position:fixed; width:20%; top:60px; right: 0; background: white; display:none;}
+        .sidebar-nav{  z-index: 99999;position:fixed; width:40%; top:60px; right: 0; background: white; display:none;}
         </style>
 
     </head>
@@ -26,14 +26,12 @@
           <div class="navbar-brand " style="padding: 8px 0px;">
           <div class="row">
           <div class="col-lg-10">
-          <div class="input-group " style="">
-
-          <input type="text" class="form-control" placeholder="Search for...">
-          <span class="input-group-btn">
-          <button class="btn btn-default" type="button">Go!</button>
-          </span>
-
-          </div> <!-- input group  -->
+              <div class="input-group">
+                  <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-search"></span>
+                  </span>
+                  <input class="form-control" placeholder="Search for a tag ..." type="text">
+              </div>    
           </div>
           <div class="col-lg-2">
           <div class="btn-group ">
@@ -57,7 +55,7 @@
     <div class="container">
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron ">
-      <nav style="text-align:center;">
+      <nav style="text-align:center;" data-bind="fadeVisible: $root.totalPages()>1">
           <ul class="pagination" >
             <li data-bind="css: hasPrevious() ? '' : 'disabled', click: previous">
               <a href="#" aria-label="Previous">
@@ -89,7 +87,7 @@
           
           </a>
       </div>
-      <nav style="text-align:center;">
+      <nav style="text-align:center;"  data-bind="fadeVisible: $root.totalPages()>1">
           <ul class="pagination" >
             <li data-bind="css: hasPrevious() ? '' : 'disabled', click: previous">
               <a href="#" aria-label="Previous">
@@ -109,20 +107,39 @@
           </ul>
       </nav>
       </div> <!-- jumbotron -->
-      <div class="well sidebar-nav" data-bind="fadeVisible: $root.selectedFile()">
-        <ul class="nav nav-list">
-          <li class="nav-header">Sidebar</li>
-          <li class="active"><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
-          <li><a href="#">Link</a></li>
-        </ul>
+      <div class="jumbotron " data-bind="fadeVisible: $root.selectedFile()">
+      <h2>File list for  <span data-bind="text: $root.selectedFile() ? $root.selectedFile().name : ''"></span></h2>
+      <div class="well">
+      <p data-bind="text:selectedFile() ? selectedFile().description ? selectedFile().description : 'Add Description.' : ''"></p>
+      </div>
+      <div class="list-group" data-bind="foreach: selectedSubFiles">
+      <a href="#" class=" list-group-item"  >
+      <div class="input-group">
+      <span data-bind="text:name"></span>
+      <span class="input-group-btn">
+      <button class="btn btn-default glyphicon glyphicon-download" href="#"></button>
+      <button class="btn btn-default glyphicon glyphicon-minus" href="#"></button>
+      </span>
+
+      </div>
+
+      </a>
+      </div>
+      <div class="well" >
+
+      <div data-bind="foreach: selectedTagList" style="float:left;">
+      <a href="#" class="btn btn-primary" role="button" ><i class="glyphicon glyphicon-remove"></i> <span data-bind="text: $data"></span></a>
+      </div>
+      <a href="#" class="btn btn-success" role="button" style="margin-left: 5px;"><i class="glyphicon glyphicon-plus"></i> Add Tag</a>
+      </div>
+      <div class="text-center">
+      <div class="btn-group " >
+      <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i> Add New File</button>
+      <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-download"></i> Download All</button>
+      <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-minus"></i> Delete All</button>
+      <button type="button" class="btn btn-default" data-bind="click: closeFile"><i class="glyphicon glyphicon-remove"></i> Close</button>
+      </div>
+      </div>
       </div><!--/.well -->
 
 
