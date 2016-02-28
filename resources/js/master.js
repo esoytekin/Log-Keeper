@@ -47,7 +47,7 @@ var getFileList = function(name){
 }
 var getTagList = function(){
     var tagList = new Array();
-    tagList.push("Success");
+    tagList.push("Successful");
     tagList.push("Transcoder");
     tagList.push("Anonymous");
     return tagList;
@@ -56,6 +56,27 @@ var getTagList = function(){
 
 var getdescription = function(){
     return "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec scelerisque arcu vel odio dapibus blandit. Proin mauris nulla, rutrum ac hendrerit vitae, pulvinar eu sapien. Morbi imperdiet, sapien a placerat semper, sapien quam cursus mi, nec rhoncus nibh magna a enim. Vivamus metus arcu, tempus lobortis imperdiet et, ornare quis justo. Suspendisse potenti. Donec at lorem at elit elementum sodales. Fusce posuere mollis neque, sit amet aliquam ligula convallis eget. Sed sit amet justo at nulla consequat vulputate. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.";
+}
+
+var getFileGroup = function(){
+    var fileGroup = new Array();
+    var fileGroupItem = new itemGroup("First File", getFileList("First"),getTagList());
+    fileGroup.push(fileGroupItem);
+    fileGroupItem = new itemGroup("Second File", getFileList("Second"),undefined,getdescription());
+    fileGroup.push(fileGroupItem);
+    fileGroupItem = new itemGroup("Third File", getFileList("Third"),getTagList());
+    fileGroup.push(fileGroupItem);
+    fileGroupItem = new itemGroup("Fourth File", getFileList("Fourth"),undefined,getdescription());
+    fileGroup.push(fileGroupItem);
+    fileGroupItem = new itemGroup("Fifth File", getFileList("Fifth"),getTagList());
+    fileGroup.push(fileGroupItem);
+    fileGroupItem = new itemGroup("Sixth File", getFileList("Sixth"),undefined,getdescription());
+    fileGroup.push(fileGroupItem);
+    fileGroupItem = new itemGroup("Seventh File", getFileList("Seventh"),getTagList());
+    fileGroup.push(fileGroupItem);
+    fileGroupItem = new itemGroup("Eight File", getFileList("Eight"),undefined,getdescription());
+    fileGroup.push(fileGroupItem);
+    return fileGroup;
 }
 // This is a simple *viewmodel* - JavaScript that defines the data and behavior of your UI
 function AppViewModel() {
@@ -67,22 +88,7 @@ function AppViewModel() {
     self.fileGroup = ko.observableArray(); 
 
 
-    var fileGroupItem = new itemGroup("First File", getFileList("First"),getTagList());
-    self.fileGroup.push(fileGroupItem);
-    fileGroupItem = new itemGroup("Second File", getFileList("Second"),undefined,getdescription());
-    self.fileGroup.push(fileGroupItem);
-    var fileGroupItem = new itemGroup("Third File", getFileList("Third"),getTagList());
-    self.fileGroup.push(fileGroupItem);
-    fileGroupItem = new itemGroup("Fourth File", getFileList("Fourth"),undefined,getdescription());
-    self.fileGroup.push(fileGroupItem);
-    var fileGroupItem = new itemGroup("Fifth File", getFileList("Fifth"),getTagList());
-    self.fileGroup.push(fileGroupItem);
-    fileGroupItem = new itemGroup("Sixth File", getFileList("Sixth"),undefined,getdescription());
-    self.fileGroup.push(fileGroupItem);
-    var fileGroupItem = new itemGroup("Seventh File", getFileList("Seventh"),getTagList());
-    self.fileGroup.push(fileGroupItem);
-    fileGroupItem = new itemGroup("Eight File", getFileList("Eight"),undefined,getdescription());
-    self.fileGroup.push(fileGroupItem);
+    self.fileGroup(getFileGroup());
 
     self.selectedFile = ko.observable();
     self.selectedSubFiles = ko.observableArray([]);
@@ -144,9 +150,72 @@ function AppViewModel() {
         
         self.selectedTagList.remove(item);
     }
+
+    self.tagString = ko.observable();
+    self.searchTag = function(item, event){
+        self.fileGroup('');
+        var fileGroupItem = new Array();
+        var fg = getFileGroup();
+          //console.log(self.tagString());
+        if (self.tagString() == "") {
+            self.fileGroup(fg);
+        } else {
+            var tagFilter = self.tagString().split(",");
+            for (var i=0; i < fg.length; ++i) {
+                var taglist = fg[i].taglist;
+                if (taglist) {
+                    var result = true;
+                    for (var j=0; j < tagFilter.length; ++j) {
+                        if(!contains.call(taglist,tagFilter[j])){
+                            result = false;
+                            break;
+                        }
+                    }
+                    if (result) {
+                        fileGroupItem.push(fg[i]);
+                    }
+                }
+            }
+
+            if (fileGroupItem.length > 0) {
+                self.fileGroup(fileGroupItem);
+            }
+
+        
+        }
+
+    }
     
 
 }
+
+var contains = function(needle) {
+    // Per spec, the way to identify NaN is that it is not equal to itself
+    var findNaN = needle !== needle;
+    var indexOf;
+
+    if(!findNaN && typeof Array.prototype.indexOf === 'function') {
+        indexOf = Array.prototype.indexOf;
+    } else {
+        indexOf = function(needle) {
+            var i = -1, index = -1;
+
+            for(i = 0; i < this.length; i++) {
+                var item = this[i];
+
+                if((findNaN && item !== item) || item === needle) {
+                    index = i;
+                    break;
+                }
+            }
+
+            return index;
+        };
+    }
+
+    return indexOf.call(this, needle) > -1;
+};
+
 
 // Activates knockout.js
 ko.applyBindings(new AppViewModel());

@@ -1,21 +1,23 @@
-var citynames = new Bloodhound({
+var tagnames = new Bloodhound({
   datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
   queryTokenizer: Bloodhound.tokenizers.whitespace,
   prefetch: {
-    url: 'assets/citynames.json',
+    url: 'resources/tagnames.json',
     filter: function(list) {
       return $.map(list, function(cityname) {
         return { name: cityname }; });
     }
   }
 });
-citynames.initialize();
+tagnames.initialize();
 
-$('input').tagsinput({
+$('#txtTagSearch').tagsinput({
   typeaheadjs: {
-    name: 'citynames',
+    name: 'tagnames',
     displayKey: 'name',
     valueKey: 'name',
-    source: citynames.ttAdapter()
+    source: tagnames.ttAdapter()
   }
 });
+
+

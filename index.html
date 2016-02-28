@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         
         <link rel="stylesheet" href="resources/css/bootstrap-tagsinput.css" type="text/css" media="screen" charset="utf-8">
+        <link rel="stylesheet" href="resources/css/app.css" type="text/css" media="screen" charset="utf-8">
         <style type="text/css" media="screen">
         body {
             padding-top: 70px;
@@ -21,8 +22,6 @@
         }
         </style>
 
-<script>
-</script>
     </head>
     <body>
       <!-- Fixed navbar -->
@@ -36,13 +35,15 @@
           <div class="navbar-brand " style="padding: 8px 0px;">
           <div class="row">
           <div class="col-lg-10">
+              <form role="form" accept-charset="utf-8" data-bind="submit: searchTag">
               <div class="input-group">
                   <span class="input-group-addon">
                     <span class="glyphicon glyphicon-search"></span>
                   </span>
-                  <input class="form-control"  placeholder="Search for a tag ..." type="text" data-role="tagsinput">
-
-              </div>    
+                  <input class="form-control" id="txtTagSearch" placeholder="Search for a tag ..." type="text" data-role="tagsinput" data-bind="value:tagString" >
+                  <input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;" tabindex="-1" />
+              </div> <!-- div:form group -->   
+              </form>
           </div>
           <div class="col-lg-2">
           <div class="btn-group ">
@@ -175,6 +176,8 @@
     <script src="resources/js/knockout-3.4.0.js" type="text/javascript" charset="utf-8"></script>
     <script src="resources/js/master.js" type="text/javascript" charset="utf-8"></script>
     <script src="resources/js/basic.js" type="text/javascript" charset="utf-8"></script>
+    <script src="resources/js/app.js" type="text/javascript" charset="utf-8"></script>
+    <script src="resources/js/app_bs3.js" type="text/javascript" charset="utf-8"></script>
 
     </body>
 </html>
