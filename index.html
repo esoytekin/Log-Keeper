@@ -6,6 +6,8 @@
 
         <!-- Optional theme -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        
         <link rel="stylesheet" href="resources/css/bootstrap-tagsinput.css" type="text/css" media="screen" charset="utf-8">
         <style type="text/css" media="screen">
         body {
@@ -19,27 +21,6 @@
         </style>
 
 <script>
-var citynames = new Bloodhound({
-  datumTokenizer: Bloodhound.tokenizers.obj.whitespace('name'),
-  queryTokenizer: Bloodhound.tokenizers.whitespace,
-  prefetch: {
-    url: 'assets/citynames.json',
-    filter: function(list) {
-      return $.map(list, function(cityname) {
-        return { name: cityname }; });
-    }
-  }
-});
-citynames.initialize();
-
-$('input').tagsinput({
-  typeaheadjs: {
-    name: 'citynames',
-    displayKey: 'name',
-    valueKey: 'name',
-    source: citynames.ttAdapter()
-  }
-});
 </script>
     </head>
     <body>
@@ -64,7 +45,9 @@ $('input').tagsinput({
           </div>
           <div class="col-lg-2">
           <div class="btn-group ">
-          <button type="button" class="btn btn-default">Upload</button>
+          <button type="button" class="btn btn-default">
+            <i class="fa fa-cloud-upload"></i> Upload
+          </button>
           </div>
           </div>
           </div>
@@ -108,8 +91,9 @@ $('input').tagsinput({
           <div class="input-group">
           <span data-bind="text:name"></span>
           <span class="input-group-btn">
-                <button class="btn btn-default glyphicon glyphicon-download" href="#"></button>
-                <button class="btn btn-default glyphicon glyphicon-minus" href="#"></button>
+                <button class="btn btn-default glyphicon glyphicon-download" title="Download" href="#"></button>
+                <button class="btn btn-default glyphicon glyphicon-share-alt" href="#" title="Share"></button>
+                <button class="btn btn-default glyphicon glyphicon-minus" href="#" title="Remove"></button>
           </span>
           
           </div>
@@ -157,7 +141,9 @@ $('input').tagsinput({
       <div class="well" >
 
       <div data-bind="foreach: selectedTagList" style="float:left;">
-      <span class="label label-info" ><span data-bind="text: $data"></span> <a href="#" role="button" data-bind="click: $root.removeTag" class="glyphicon glyphicon-remove"></a></span>
+      <button class="btn btn-primary" data-bind="click: $root.removeTag" >
+      <span data-bind="text: $data"></span> <span  class="glyphicon glyphicon-remove"></span>
+      </button>
       </div>
       <a href="#" class="btn btn-success" role="button" style="margin-left: 5px;"><i class="glyphicon glyphicon-plus"></i> Add Tag</a>
       </div>
@@ -165,6 +151,7 @@ $('input').tagsinput({
       <div class="btn-group " >
       <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-plus"></i> Add New File</button>
       <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-download"></i> Download All</button>
+      <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-share-alt"></i> Share</button>
       <button type="button" class="btn btn-default"><i class="glyphicon glyphicon-minus"></i> Delete All</button>
       <button type="button" class="btn btn-default" data-bind="click: closeFile"><i class="glyphicon glyphicon-remove"></i> Close</button>
       </div>
@@ -180,10 +167,12 @@ $('input').tagsinput({
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="resources/js/bootstrap3-typeahead.min.js" type="text/javascript" charset="utf-8"></script>
+    <!--<script src="resources/js/bootstrap3-typeahead.min.js" type="text/javascript" charset="utf-8"></script>-->
+    <script src="resources/js/typeahead.bundle.js" type="text/javascript" charset="utf-8"></script>
     <script src="resources/js/bootstrap-tagsinput.js" type="text/javascript" charset="utf-8"></script>
     <script src="resources/js/knockout-3.4.0.js" type="text/javascript" charset="utf-8"></script>
     <script src="resources/js/master.js" type="text/javascript" charset="utf-8"></script>
+    <script src="resources/js/basic.js" type="text/javascript" charset="utf-8"></script>
 
     </body>
 </html>
