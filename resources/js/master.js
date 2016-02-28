@@ -71,6 +71,18 @@ function AppViewModel() {
     self.fileGroup.push(fileGroupItem);
     fileGroupItem = new itemGroup("Second File", getFileList("Second"),undefined,getdescription());
     self.fileGroup.push(fileGroupItem);
+    var fileGroupItem = new itemGroup("Third File", getFileList("Third"),getTagList());
+    self.fileGroup.push(fileGroupItem);
+    fileGroupItem = new itemGroup("Fourth File", getFileList("Fourth"),undefined,getdescription());
+    self.fileGroup.push(fileGroupItem);
+    var fileGroupItem = new itemGroup("Fifth File", getFileList("Fifth"),getTagList());
+    self.fileGroup.push(fileGroupItem);
+    fileGroupItem = new itemGroup("Sixth File", getFileList("Sixth"),undefined,getdescription());
+    self.fileGroup.push(fileGroupItem);
+    var fileGroupItem = new itemGroup("Seventh File", getFileList("Seventh"),getTagList());
+    self.fileGroup.push(fileGroupItem);
+    fileGroupItem = new itemGroup("Eight File", getFileList("Eight"),undefined,getdescription());
+    self.fileGroup.push(fileGroupItem);
 
     self.selectedFile = ko.observable();
     self.selectedSubFiles = ko.observableArray([]);
@@ -78,7 +90,7 @@ function AppViewModel() {
 
 
     self.pageNumber = ko.observable(0);
-    self.nbPerPage = 10;
+    self.nbPerPage = 5;
     self.totalPages = ko.computed(function() {
         var div = Math.floor(self.fileGroup().length / self.nbPerPage);
         div += self.fileGroup().length % self.nbPerPage > 0 ? 1 : 0;
