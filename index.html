@@ -2,6 +2,7 @@
     <head>
         <title>Log Keeper</title>
         <!-- Latest compiled and minified CSS -->
+        <link rel="icon" type="image/png" href="resources/favicon-paper-plane.ico">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
         <!-- Optional theme -->
@@ -28,10 +29,10 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container" >
         <div class ="row">
-        <div class="navbar-header col-sm-1" >
-          <a class="navbar-brand" href="#" data-bind="text: title"></a>
+        <div class="navbar-header col-sm-2" >
+          <a class="navbar-brand" href="#" ><i class="fa fa-paper-plane"></i> Log Keeper</a>
         </div>
-        <div class="navbar-header col-sm-8" >
+        <div class="navbar-header col-sm-7" >
           <div class="navbar-brand " style="padding: 8px 0px;">
           <div class="row">
           <div class="col-lg-10">
@@ -142,6 +143,7 @@
 
       <div data-bind="foreach: selectedTagList" style="float:left;">
       <button class="btn btn-primary" data-bind="click: $root.removeTag" >
+      <i class="fa fa-tags"></i>
       <span data-bind="text: $data"></span> <span  class="glyphicon glyphicon-remove"></span>
       </button>
       </div>
