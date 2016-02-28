@@ -84,7 +84,7 @@ $('input').tagsinput({
     <div class="container">
       <!-- Main component for a primary marketing message or call to action -->
       <div class="jumbotron ">
-      <nav style="text-align:center;" data-bind="fadeVisible: $root.totalPages()>1">
+      <nav style="text-align:center;" data-bind="visible: $root.totalPages()>1">
           <ul class="pagination" >
             <li data-bind="css: hasPrevious() ? '' : 'disabled', click: previous">
               <a href="#" aria-label="Previous">
@@ -116,7 +116,7 @@ $('input').tagsinput({
           
           </a>
       </div>
-      <nav style="text-align:center;"  data-bind="fadeVisible: $root.totalPages()>1">
+      <nav style="text-align:center;"  data-bind="visible: $root.totalPages()>1">
           <ul class="pagination" >
             <li data-bind="css: hasPrevious() ? '' : 'disabled', click: previous">
               <a href="#" aria-label="Previous">
@@ -136,7 +136,7 @@ $('input').tagsinput({
           </ul>
       </nav>
       </div> <!-- jumbotron -->
-      <div class="jumbotron " data-bind="fadeVisible: $root.selectedFile()">
+      <div class="jumbotron " data-bind="visible: $root.selectedFile()">
       <h2>File list for  <span data-bind="text: $root.selectedFile() ? $root.selectedFile().name : ''"></span></h2>
       <div class="well">
       <p data-bind="text:selectedFile() ? selectedFile().description ? selectedFile().description : 'Add Description.' : ''"></p>
@@ -157,7 +157,7 @@ $('input').tagsinput({
       <div class="well" >
 
       <div data-bind="foreach: selectedTagList" style="float:left;">
-      <a href="#" class="btn btn-primary" role="button" ><i class="glyphicon glyphicon-remove"></i> <span data-bind="text: $data"></span></a>
+      <span class="label label-info" ><span data-bind="text: $data"></span> <a href="#" role="button" data-bind="click: $root.removeTag" class="glyphicon glyphicon-remove"></a></span>
       </div>
       <a href="#" class="btn btn-success" role="button" style="margin-left: 5px;"><i class="glyphicon glyphicon-plus"></i> Add Tag</a>
       </div>

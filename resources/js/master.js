@@ -13,6 +13,13 @@ ko.bindingHandlers.fadeVisible = {
                         shouldDisplay() ? $(element).fadeIn() : $(element).fadeOut();
 		}
 };
+ko.bindingHandlers.visible = {
+		
+		init: function(element, valueAccessor){},
+		update: function(element, shouldDisplay){
+                        shouldDisplay() ? $(element).show() : $(element).hide();
+		}
+};
 var file_ff = function(name, path, type){
     var self = this;
     self.name = name;
@@ -119,6 +126,11 @@ function AppViewModel() {
 
     self.closeFile = function(){
         self.selectedFile('');
+    }
+
+    self.removeTag = function(item,event){
+        
+        self.selectedTagList.remove(item);
     }
     
 
