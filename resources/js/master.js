@@ -7,6 +7,8 @@
 //http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/
 //
 //
+//fileupload with spring mvc
+//http://hmkcode.com/spring-mvc-jquery-file-upload-multiple-dragdrop-progress/
 
 $(function(){
 
