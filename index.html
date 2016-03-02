@@ -89,7 +89,7 @@
           </ul>
       </nav>
       <div class="list-group" data-bind="foreach: paginated">
-          <a href="#" class=" list-group-item" data-bind="click: $root.fileClicked, css: $root.selectedFile() && name==$root.selectedFile().name ? 'active' : ''" >
+          <a href="#" class="btnFile list-group-item" data-bind="click: $root.fileClicked, css: $root.selectedFile() && name==$root.selectedFile().name ? 'active' : ''" >
           <div class="input-group">
           <span data-bind="text:name"></span>
           <span class="input-group-btn">
@@ -122,7 +122,7 @@
           </ul>
       </nav>
       </div> <!-- jumbotron -->
-      <div class="jumbotron " data-bind="visible: $root.selectedFile()">
+      <div id="subFiles" class="jumbotron " data-bind="visible: $root.selectedFile()">
       <h2>File list for  <span data-bind="text: $root.selectedFile() ? $root.selectedFile().name : ''"></span></h2>
       <div class="well">
       <p data-bind="text:selectedFile() ? selectedFile().description ? selectedFile().description : 'Add Description.' : ''"></p>
@@ -133,6 +133,7 @@
       <span data-bind="text:name"></span>
       <span class="input-group-btn">
       <button class="btn btn-default glyphicon glyphicon-download" href="#"></button>
+      <button class="btn btn-default glyphicon glyphicon-eye-open" href="#"></button>
       <button class="btn btn-default glyphicon glyphicon-minus" href="#"></button>
       </span>
 

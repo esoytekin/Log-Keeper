@@ -5,6 +5,13 @@
 
 //https://github.com/bassjobsen/Bootstrap-3-Typeahead
 //http://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/
+//
+//
+
+$(function(){
+
+
+});
 
 ko.bindingHandlers.fadeVisible = {
 		
@@ -131,6 +138,7 @@ function AppViewModel() {
     }
 
     self.fileClicked = function(item, event){
+
     	if(self.selectedFile() && item.name === self.selectedFile().name){
     		self.selectedFile(''); 
     	}else{ 
@@ -138,6 +146,10 @@ function AppViewModel() {
             self.selectedSubFiles(item.fileList);
             self.selectedTagList(item.taglist);
     	}
+
+        $("html,body").animate({
+            scrollTop: $("#subFiles").offset().top
+        });
         //self.selectedFile(item);
     
     }
